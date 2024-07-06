@@ -1,0 +1,27 @@
+/* Swiper JS Customizations */
+.swiper-container {
+    height: calc(100vh - 80px); /* Adjust height as needed */
+}
+
+.swiper-slide {
+    position: relative; /* To position content over the image */
+}
+
+.swiper-pagination {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5); /* Customize bullet color */
+    opacity: 1; /* Make bullets fully opaque */
+}
+
+.swiper-pagination-bullet-active {
+    background-color: white; /* Customize active bullet color */
+}

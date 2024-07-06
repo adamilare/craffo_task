@@ -13,6 +13,65 @@ body {
     padding: 0;
 }
 
+@media (max-width: 768px) {
+    .logo {
+        order: 2;
+    }
+
+    .flex.items-center.space-x-4 {
+        order: 3;
+    }
+
+    .flex.items-center.md\\:hidden {
+        order: 1;
+    }
+
+    .swiper-slide h3 {
+        font-size: 36px;
+    }
+
+    .swiper-pagination-bullet {
+        width: 20px;
+    }
+}
+
+.icon--header-cart {
+    position: relative;
+}
+
+.icon--header-cart + span {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    color: black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#mobile-menu-toggle {
+    transition: transform 0.3s ease;
+}
+
+#mobile-menu-toggle.active {
+    transform: rotate(90deg);
+}
+
+#mobile-menu {
+    transition: max-height 0.3s ease-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+#mobile-menu.active {
+    max-height: 300px;
+}
+
 .swiper {
     width: 100%;
     height: 100%;
@@ -28,7 +87,6 @@ body {
     line-height: 1;
     flex-direction: column;
     font-weight: 700;
-
 }
 
 .swiper-slide {
@@ -49,18 +107,14 @@ body {
 .swiper-pagination-bullet {
     width: 40px;
     height: 2px;
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-    color: #000;
+    border-radius: 0;
     opacity: 1;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .swiper-pagination-bullet-active {
     position: relative;
     overflow: hidden;
-    background: transparent;
 }
 
 .swiper-pagination-bullet-active::before {
@@ -70,7 +124,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, #007aff 50%, transparent 50%);
+    background: linear-gradient(to right, #fff 50%, transparent 40%);
     background-size: 200% 100%;
     background-position: right bottom;
     animation: fillBackground 5s linear forwards;
@@ -92,12 +146,21 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
+@keyframes slideFromRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
 .animate-fadeIn {
     animation: fadeIn 0.5s ease-out forwards;
 }
 
 .animate-slideUp {
     animation: slideUp 0.5s ease-out forwards;
+}
+
+.animate-slideIn {
+    animation: slideFromRight 0.5s ease-out forwards;
 }
 
 .swiper-slide-active h2.animate-fadeIn,

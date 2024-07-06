@@ -52,9 +52,13 @@ const sliderData = [
 ];
 
 function generateSlideHTML(slide, index) {
-    const imageHTML = slide.images.map(img => `<img src="${img}" alt="Slide ${index + 1}" class="w-full h-full object-cover">`).join('');
+    const isMobile = window.innerWidth <= 768;
+    const imageHTML = isMobile
+        ? `<img src="${slide.images[0]}" alt="Slide ${index + 1}" class="w-full h-full object-cover">`
+        : slide.images.map(img => `<img src="${img}" alt="Slide ${index + 1}" class="w-full h-full object-cover">`).join('');
+
     const h3HTML = slide.h3.map(chunk => `<span class="block">${chunk}</span>`).join('');
-    const buttonsHTML = slide.buttons.map(btn => `<button class="bg-primary text-black rounded-none font-medium py-2 px-4 rounded-full">${btn}</button>`).join('');
+    const buttonsHTML = slide.buttons.map(btn => `<button class="bg-primary text-black rounded-none font-medium py-3 px-6 mr-4 rounded-full">${btn}</button>`).join('');
 
     const contentAlignment = index % 2 === 0 ? 'justify-start text-left' : 'justify-center text-center' ;
     const contentMargin = index % 2 === 0 ?'ml-10 md:ml-20 lg:ml-40' : '';
@@ -103,10 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const h2 = activeSlide.querySelector('h2');
                 const h3 = activeSlide.querySelector('h3');
                 const buttons = activeSlide.querySelectorAll('button');
+                const img = activeSlide.querySelector('img')
 
                 h2.classList.add('animate-fadeIn');
                 h3.classList.add('animate-slideUp');
                 buttons.forEach(button => button.classList.add('animate-slideUp'));
+                img.classList.add("animate-slideIn");
             },
             slideChangeTransitionEnd: function () {
                 const slides = this.slides;
@@ -118,8 +124,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     h2.classList.remove('animate-fadeIn');
                     h3.classList.remove('animate-slideUp');
                     buttons.forEach(button => button.classList.remove('animate-slideUp'));
+                    img.classList.remove("animate-slideIn");
                 });
             }
-        }
+        },
+    });
+
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    });
+
+    window.addEventListener('resize', () => {
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
+        swiperWrapper.innerHTML = sliderData.map((slide, index) => generateSlideHTML(slide, index)).join('');
+        swiper.update();
     });
 });

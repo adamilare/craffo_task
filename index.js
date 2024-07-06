@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const swiperWrapper = document.querySelector('.swiper-wrapper');
     swiperWrapper.innerHTML = sliderData.map((slide, index) => generateSlideHTML(slide, index)).join('');
 
-    // Initialize Swiper
     var swiper = new Swiper(".mySwiper, .swiper-container", {
         effect: "fade",
         fadeEffect: {

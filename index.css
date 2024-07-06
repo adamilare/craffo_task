@@ -106,13 +106,12 @@ body {
     opacity: 1;
 }
 
-/* Add a transition for the button hover effect */
 .swiper-slide button {
     transition: background-color 0.3s ease;
 }
 
 .swiper-slide button:hover {
-    background-color: rgba(243, 255, 52, 0.8); /* Slightly transparent primary color */
+    background-color: rgba(243, 255, 52, 0.8);
 }
 
 :root {

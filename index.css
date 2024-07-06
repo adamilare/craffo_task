@@ -1,27 +1,184 @@
-/* Swiper JS Customizations */
-.swiper-container {
-    height: calc(100vh - 80px); /* Adjust height as needed */
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--primary-color);
+    font-size: 16px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        order: 2;
+    }
+
+    .flex.items-center.space-x-4 {
+        order: 3;
+    }
+
+    .flex.items-center.md\\:hidden {
+        order: 1;
+    }
+
+    .swiper-slide h3 {
+        font-size: 36px;
+    }
+
+    .swiper-pagination-bullet {
+        width: 20px;
+    }
+}
+
+.icon--header-cart {
+    position: relative;
+}
+
+.icon--header-cart + span {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    color: black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#mobile-menu-toggle {
+    transition: transform 0.3s ease;
+}
+
+#mobile-menu-toggle.active {
+    transform: rotate(90deg);
+}
+
+#mobile-menu {
+    transition: max-height 0.3s ease-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+#mobile-menu.active {
+    max-height: 300px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-wrapper {
+    text-transform: uppercase;
+}
+
+.swiper-wrapper h3 {
+    font-family: var(--font-family-ext);
+    display: flex;
+    line-height: 1;
+    flex-direction: column;
+    font-weight: 700;
 }
 
 .swiper-slide {
-    position: relative; /* To position content over the image */
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.swiper-pagination {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.5); /* Customize bullet color */
-    opacity: 1; /* Make bullets fully opaque */
+    width: 40px;
+    height: 2px;
+    border-radius: 0;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .swiper-pagination-bullet-active {
-    background-color: white; /* Customize active bullet color */
+    position: relative;
+    overflow: hidden;
+}
+
+.swiper-pagination-bullet-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #fff 50%, transparent 40%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    animation: fillBackground 5s linear forwards;
+}
+
+@keyframes fillBackground {
+    to {
+        background-position: left bottom;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideFromRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slideUp {
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+.animate-slideIn {
+    animation: slideFromRight 0.5s ease-out forwards;
+}
+
+.swiper-slide-active h2.animate-fadeIn,
+.swiper-slide-active h3.animate-slideUp,
+.swiper-slide-active button.animate-fadeIn {
+    opacity: 1;
+}
+
+.swiper-slide button {
+    transition: background-color 0.3s ease;
+}
+
+.swiper-slide button:hover {
+    background-color: rgba(243, 255, 52, 0.8);
+}
+
+:root {
+    --font-family: "Zurich", sans-serif;
+    --font-family-ext: "Zurich Extended", sans-serif;
+    --primary-color: #F3FF34
 }
